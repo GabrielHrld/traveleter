@@ -1,81 +1,42 @@
-import * as React from "react"
+import React, {useState} from "react"
 import { Link,} from "gatsby"
-import styled from 'styled-components'
-import {Button} from './Button'
 
 import { FaBars} from 'react-icons/fa'
+import { MdClose} from 'react-icons/md'
 import {menuData} from '../data/MenuData';
 
+import './styles/Header.css'
+
 const Header = () => {
+  const [clicked, setClicked] = useState(false)
+
+  const handleClick = () => {
+    setClicked(!clicked);
+  }
+
   return (
-    <Nav>
-      <NavLink to="/">HRLD Travel</NavLink>
-      <Bars/>
-      <NavMenu>
+    <nav className="NavbarItems">
+      <Link href="/" className="logo-link">
+        <h1 className="navbar-logo">TRAVELETER</h1>
+      </Link>
+      <div className="menu-icon" onClick={handleClick}>
+        {clicked ? <MdClose css={`color: #077BF1`}/> : <FaBars css={`color: #F26A2E`}/>}
+      </div>
+      <ul className={clicked ? 'nav-menu active' : 'nav-menu'}>
         {
-          menuData.map((item, index) => (<NavLink to={item.link} key={index}>{item.title}</NavLink>))
+          menuData.map((item, index) =>  {
+            return (
+              <li key={index}>
+                <Link className="nav-links" to={item.link}>
+                  {item.title}
+                </Link>
+              </li>
+            )
+          })
         }
-      </NavMenu>
-      <NavBtn>
-        <Button primary="true" round="true" to="/" >Book a Flight</Button>
-      </NavBtn>
-    </Nav>
+      </ul>
+    </nav>
   )
 }
 
 export default Header
-
-const Nav = styled.nav`
-  background: transparent;
-  height: 80px;
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem calc((100vw - 1300px) / 2);
-  z-index: 4;
-  position: relative;
-`
-
-const NavLink = styled(Link)`
-  color: #fff;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding: 0 1rem;
-  height: 100%;
-  cursor: pointer;
-`
-
-const Bars = styled(FaBars)`
-  display: none;
-  color: #fff;
-
-  @media screen and (max-width: 768px){
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 75%);
-    font-size: 1.8rem;
-    cursor: pointer;
-  }
-`
-
-const NavMenu = styled.div`
-  display:flex;
-  align-items: center;
-  margin-right: -48px;
-
-  @media screen and (max-width: 768px){
-    display: none;
-  }
-`
-
-const NavBtn = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 24px;
-
-  @media screen and (max-width: 768px){
-    display: none;
-  }
-`
