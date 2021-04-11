@@ -10,6 +10,10 @@
   z-index: 999;
 }
 
+.HeaderBg{
+  background: #2e2e2e;
+}
+
 .logo-link{
   text-decoration: none;
 

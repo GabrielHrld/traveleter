@@ -7,7 +7,7 @@ import {menuData} from '../data/MenuData';
 
 import './styles/Header.css'
 
-const Header = () => {
+const Header = ({background}) => {
   const [clicked, setClicked] = useState(false)
 
   const handleClick = () => {
@@ -15,7 +15,7 @@ const Header = () => {
   }
 
   return (
-    <nav className="NavbarItems">
+    <nav className={background ? 'NavbarItems HeaderBg' : 'NavbarItems'}>
       <Link href="/" className="logo-link">
         <h1 className="navbar-logo">TRAVELETER</h1>
       </Link>

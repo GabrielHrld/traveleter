@@ -3,11 +3,11 @@ import Footer from "./Footer";
 import Header from "./Header"
 import {GlobalStyle} from './styles/GlobalStyles';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, background }) => {
   return (
     <>
       <GlobalStyle/>
-      <Header/>
+      <Header background={background}/>
       <main>{children}</main>
       <Footer />
     </>
