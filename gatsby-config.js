@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `HRLD Travel`,
+    title: `Traveleter`,
     description: `Travel website showcasing best travel destinations.`,
     author: `@HeraldHRLD`,
   },
